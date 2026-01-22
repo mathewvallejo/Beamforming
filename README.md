@@ -1,3 +1,7 @@
 # Beamforming
-Collection of various beamformer implementations
-(Under construction: MVDR, LCMV and DL examples coming Jan/Feb 2026)
+Collection of various beamformer implementations:
+
+- Conventional (delay and sum)
+- MVDR (minimum variance distortionless response)
+- LCMV (linearly constrained minimum variance)
+- MUSIC (multiple signal classification) --> In progress :)
