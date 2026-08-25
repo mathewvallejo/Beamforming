@@ -3,7 +3,7 @@ Collection of various beamformer implementations:
 
 - Conventional (delay and sum)
 - MVDR (minimum variance distortionless response)
-- LCMV (linearly constrained minimum variance) --> In progress :)
-- MUSIC (multiple signal classification) --> In progress :)
+- LCMV (linearly constrained minimum variance) --> Under construction
+- MUSIC (multiple signal classification) --> Under construction 
 
-Theory and plotting code used with thanks and respect from https://pysdr.org/content/doa.html#lcmv-beamformer
+Mathematical theory and plotting code source: https://pysdr.org/content/doa.html#lcmv-beamformer
