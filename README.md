@@ -20,8 +20,11 @@ snapshot model is
 
 $$ \mathbf{y}[n] = \mathbf{s} \cdot x[n] + \mathbf{v}[n] $$
 
-where $X$ is the $N_r \times N$ received snapshot matrix, $x$ is the source
-signal row vector, $s$ is the $N_r \times 1$ steering vector, and $n$ is noise.
+Where:
+* $\mathbf{y}[n]$ is the received signal vector at time $n$.
+* $\mathbf{s}$ is the spatial steering vector.
+* $x[n]$ is the discrete-time scalar signal.
+* $\mathbf{v}[n]$ is the noise vector at time $n$.
 
 For adjacent sensor spacing $d$ measured in wavelengths, the phase shift at the
 $k$th sensor is:
