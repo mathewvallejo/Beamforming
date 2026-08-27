@@ -13,19 +13,21 @@ estimation. Examples are primarily based on theory and notation presented in
 
 ## Acoustic Array Model
 
-For a uniform linear microphone array with $N_r$ sensors, the narrowband far-field
-model is:
+For a uniform linear microphone array with $N_r$ sensors, the single-source
+narrowband far-field received signal model is:
 
-$$ \mathbf{y}[n] = \mathbf{s} \cdot x[n] + \mathbf{v}[n] $$
+$$
+X = s x + n
+$$
 
-Where:
-- $\mathbf{y}[n]$ is the received signal vector at time $n$.
-- $\mathbf{s}$ is the spatial steering vector.
-- $x[n]$ is the discrete-time scalar signal.
-- $\mathbf{v}[n]$ is the noise vector at time $n$.
+where:
+- $X$ is the $N_r \times N$ received signal matrix.
+- $s$ is the $N_r \times 1$ steering vector.
+- $x$ is the $1 \times N$ source signal row vector.
+- $n$ is the $N_r \times N$ noise matrix.
 
 For adjacent sensor spacing $d$ measured in wavelengths, the phase shift at the
-$k\text{th}$ sensor is:
+element indexed by $k$ is:
 
 $$
 e^{2j\pi d k \sin(\theta)}
@@ -45,7 +47,7 @@ e^{2j\pi d (N_r - 1)\sin(\theta)}
 \end{bmatrix}
 $$
 
-The spatial covariance matrix is
+The spatial covariance matrix estimated from $X$ is
 
 $$
 R = \frac{1}{N}X X^H
@@ -64,22 +66,26 @@ R = (X @ X.conj().T) / X.shape[1]
 Delay-and-sum (DAS), also called conventional beamforming, phase-aligns a look direction and sums the sensors. In PySDR notation, the conventional weights are the steering vector for the look angle:
 
 $$
-w(\\theta) = s(\\theta)
+w(\theta) = s(\theta)
 $$
 
 The beamformer output is:
 
 $$
-y(\\theta) = w^H(\\theta)X
+X_{\text{weighted}}(\theta) = w^H(\theta)X
 $$
 
 For DOA estimation, the look direction is swept over a range of angles and the output power is evaluated at each angle:
 
 $$
-P_{\text{DAS}}(\theta) = \text{var}(y(\theta))
+P_{\text{DAS}}(\theta) = \operatorname{var}(X_{\text{weighted}}(\theta))
 $$
 
 The estimated DOA corresponds to the angle producing the maximum output power.
+
+### MVDR / Capon
+
+MVDR minimizes output power while preserving unit response in the scan direction:
 
 $$
 \min_w \; w^H R w
