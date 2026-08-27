@@ -75,9 +75,7 @@ $$
 y = w^H X
 $$
 
-$$
-P_{DAS}(\theta) = \operatorname{var}(y)
-$$
+$$ P_{DAS}(\theta) = \text{var}(y) $$
 
 Delay-and-sum is simple, robust, and intuitive, but its angular resolution is
 limited by array aperture and sidelobe behavior.
