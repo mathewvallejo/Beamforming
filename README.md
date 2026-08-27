@@ -18,9 +18,7 @@ for acoustic arrays.
 For a uniform linear microphone array with $N_r$ sensors, the narrowband far-field
 snapshot model is
 
-$$
-X = s x + n
-$$
+$$ \mathbf{y}[n] = \mathbf{s} \cdot x[n] + \mathbf{v}[n] $$
 
 where $X$ is the $N_r \times N$ received snapshot matrix, $x$ is the source
 signal row vector, $s$ is the $N_r \times 1$ steering vector, and $n$ is noise.
