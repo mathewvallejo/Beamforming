@@ -16,7 +16,7 @@ for acoustic arrays.
 ## Acoustic Array Model
 
 For a uniform linear microphone array with $N_r$ sensors, the narrowband far-field
-snapshot model is
+model is:
 
 $$ \mathbf{y}[n] = \mathbf{s} \cdot x[n] + \mathbf{v}[n] $$
 
@@ -58,8 +58,6 @@ where $N$ is the number of time samples. In Python:
 ```python
 R = (X @ X.conj().T) / X.shape[1]
 ```
-
-The notebooks use this narrowband far-field model throughout.
 
 ## Algorithm Math
 
