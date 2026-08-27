@@ -27,7 +27,7 @@ Where:
 - $\mathbf{v}[n]$ is the noise vector at time $n$.
 
 For adjacent sensor spacing $d$ measured in wavelengths, the phase shift at the
-$k$th sensor is:
+$k\text{th}$ sensor is:
 
 $$
 e^{2j\pi d k \sin(\theta)}
