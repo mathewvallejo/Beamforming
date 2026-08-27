@@ -21,10 +21,10 @@ X = s x + n
 $$
 
 where:
-- $X$ is the $N_r \times N$ received signal matrix.
-- $s$ is the $N_r \times 1$ steering vector.
-- $x$ is the $1 \times N$ source signal row vector.
-- $n$ is the $N_r \times N$ noise matrix.
+- $X$ is the $N_r \times N$ received signal matrix
+- $s$ is the $N_r \times 1$ steering vector
+- $x$ is the $1 \times N$ source signal row vector for N samples
+- $n$ is the $N_r \times N$ noise matrix
 
 For adjacent sensor spacing $d$ measured in wavelengths, the phase shift at the
 element indexed by $k$ is:
@@ -152,8 +152,8 @@ reliable covariance estimate.
 ## Practical Notes
 
 - Half-wavelength spacing helps avoid grating lobes over the broadside scan
-  range.
-- More microphones increase aperture and usually improve angular resolution.
-- More snapshots improve covariance estimates for MVDR, LCMV, and MUSIC.
+  range
+- More microphones increase aperture and usually improve angular resolution
+- More snapshots improve covariance estimates for MVDR, LCMV, and MUSIC
 - A straight-line array has front/back ambiguity unless the geometry or signal
-  model adds more information.
+  model adds more information
