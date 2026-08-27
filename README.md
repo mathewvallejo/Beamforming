@@ -23,7 +23,8 @@ X = s @ x + n
 ```
 
 where `X` is the `Nr x N` received snapshot matrix, `x` is the source signal row
-vector, `s` is the `Nr x 1` steering vector, and `n` is noise.
+vector, `s` is the `Nr x 1` steering vector, `n` is noise, and `@` indicates matrix
+multiplication.
 
 For adjacent sensor spacing `d` measured in wavelengths, the phase shift at the
 `k`th sensor is:
