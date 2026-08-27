@@ -76,7 +76,7 @@ $$
 For DOA estimation, the look direction is swept over a range of angles and the output power is evaluated at each angle:
 
 $$
-P_{\text{DAS}}(\theta) = \operatorname{var}(y(\theta))
+P_{\text{DAS}}(\theta) = \text{var}(y(\theta))
 $$
 
 The estimated DOA corresponds to the angle producing the maximum output power.
