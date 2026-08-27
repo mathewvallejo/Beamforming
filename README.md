@@ -66,13 +66,13 @@ R = (X @ X.conj().T) / X.shape[1]
 Delay-and-sum (DAS), also called conventional beamforming, phase-aligns a look direction and sums the sensors. In PySDR notation, the conventional weights are the steering vector for the look angle:
 
 $$
-w(\theta) = s(\theta)
+w = s(\theta)
 $$
 
 The beamformer output is:
 
 $$
-X_{weighted}(\theta) = w^H(\theta)X
+X_{weighted}(\theta) = w^H X
 $$
 
 For DOA estimation, the look direction is swept over a range of angles and the output power is evaluated at each angle:
