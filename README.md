@@ -1,10 +1,8 @@
 # Beamforming and DOA Estimation for Acoustic Arrays
 
-Demonstration of beamforming and direction-of-arrival (DOA)
-estimation for array processing, with an emphasis on microphone arrays,
-acoustic sensing, and spatial audio capture. The notation and examples follow the
-[PySDR Beamforming & DOA chapter](https://pysdr.org/content/doa), adapted here
-for acoustic arrays.
+Python implementations of common beamforming and direction-of-arrival (DOA)
+estimation. Examples are primarily based on theory and notation presented in
+[PySDR Beamforming & DOA chapter](https://pysdr.org/content/doa).
 
 ## Notebooks
 
@@ -63,24 +61,25 @@ R = (X @ X.conj().T) / X.shape[1]
 
 ### Delay-and-Sum
 
-Delay-and-sum phase-aligns a look direction and sums the sensors. In PySDR
-notation, the conventional weights are the steering vector for the look angle:
+Delay-and-sum (DAS), also called conventional beamforming, phase-aligns a look direction and sums the sensors. In PySDR notation, the conventional weights are the steering vector for the look angle:
 
 $$
-w = s(\theta)
+w(\\theta) = s(\\theta)
 $$
 
+The beamformer output is:
+
 $$
-y = w^H X
+y(\\theta) = w^H(\\theta)X
 $$
 
-$$ P_{DAS}(\theta) = \text{var}(y) $$
+For DOA estimation, the look direction is swept over a range of angles and the output power is evaluated at each angle:
 
-where power of the Delay-and-sum is equivalent to the statistical variance of the output signal $y$.
+$$
+P_{\\mathrm{DAS}}(\\theta) = \\operatorname{var}(y(\\theta))
+$$
 
-### MVDR / Capon
-
-MVDR minimizes output power while preserving unit response in the scan direction:
+The estimated DOA corresponds to the angle producing the maximum output power.
 
 $$
 \min_w \; w^H R w
