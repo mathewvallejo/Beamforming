@@ -72,13 +72,13 @@ $$
 The beamformer output is:
 
 $$
-X_{\text{weighted}}(\theta) = w^H(\theta)X
+X_{weighted}(\theta) = w^H(\theta)X
 $$
 
 For DOA estimation, the look direction is swept over a range of angles and the output power is evaluated at each angle:
 
 $$
-P_{\text{DAS}}(\theta) = \operatorname{var}(X_{\text{weighted}}(\theta))
+P_{DAS}(\theta) = var(X_{weighted}(\theta))
 $$
 
 The estimated DOA corresponds to the angle producing the maximum output power.
@@ -92,7 +92,7 @@ $$
 $$
 
 $$
-\text{subject to} \quad w^H s = 1
+w^H s = 1
 $$
 
 The weights and spectrum are
@@ -117,7 +117,7 @@ $$
 $$
 
 $$
-\text{subject to} \quad C^H w = f
+C^H w = f
 $$
 
 with solution
