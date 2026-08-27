@@ -76,8 +76,7 @@ $$
 
 $$ P_{DAS}(\theta) = \text{var}(y) $$
 
-Delay-and-sum is simple, robust, and intuitive, but its angular resolution is
-limited by array aperture and sidelobe behavior.
+Where power of the Delay-and-sum is equivalent to the statistical variance of the output signal $y$.
 
 ### MVDR / Capon
 
