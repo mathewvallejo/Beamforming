@@ -57,7 +57,7 @@ where $N$ is the number of time samples. In Python:
 R = (X @ X.conj().T) / X.shape[1]
 ```
 
-## Algorithm Math
+## Algorithms
 
 ### Delay-and-Sum
 
@@ -76,7 +76,7 @@ $$
 For DOA estimation, the look direction is swept over a range of angles and the output power is evaluated at each angle:
 
 $$
-P_{\\mathrm{DAS}}(\\theta) = \\operatorname{var}(y(\\theta))
+P_{\mathrm{DAS}}(\theta) = \operatorname{var}(y(\theta))
 $$
 
 The estimated DOA corresponds to the angle producing the maximum output power.
