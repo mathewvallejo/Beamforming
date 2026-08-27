@@ -76,7 +76,7 @@ $$
 
 $$ P_{DAS}(\theta) = \text{var}(y) $$
 
-Where power of the Delay-and-sum is equivalent to the statistical variance of the output signal $y$.
+where power of the Delay-and-sum is equivalent to the statistical variance of the output signal $y$.
 
 ### MVDR / Capon
 
