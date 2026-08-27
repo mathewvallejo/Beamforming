@@ -15,42 +15,44 @@ for acoustic arrays.
 
 ## Acoustic Array Model
 
-For a uniform linear microphone array with `Nr` sensors, the narrowband far-field
+For a uniform linear microphone array with $N_r$ sensors, the narrowband far-field
 snapshot model is
 
-```text
-X = s @ x + n
-```
+$$
+X = s x + n
+$$
 
-where `X` is the `Nr x N` received snapshot matrix, `x` is the source signal row
-vector, `s` is the `Nr x 1` steering vector, `n` is noise, and `@` indicates matrix
-multiplication.
+where $X$ is the $N_r \times N$ received snapshot matrix, $x$ is the source
+signal row vector, $s$ is the $N_r \times 1$ steering vector, and $n$ is noise.
 
-For adjacent sensor spacing `d` measured in wavelengths, the phase shift at the
-`k`th sensor is:
+For adjacent sensor spacing $d$ measured in wavelengths, the phase shift at the
+$k$th sensor is:
 
-```text
-exp(2j*pi*d*k*sin(theta))
-```
+$$
+e^{2j\pi d k \sin(\theta)}
+$$
 
-where `k = 0, 1, ..., Nr - 1`. This gives the steering vector `s(theta)`, with
+where $k = 0, 1, \ldots, N_r - 1$. This gives the steering vector $s(\theta)$, with
 phase shifts relative to the first element:
 
-```text
-s(theta) = [exp(2j*pi*d*0*sin(theta)) = 1,
-            exp(2j*pi*d*1*sin(theta)),
-            exp(2j*pi*d*2*sin(theta)),
-            ...,
-            exp(2j*pi*d*(Nr - 1)*sin(theta))]^T
-```
+$$
+s(\theta) =
+\begin{bmatrix}
+1 \\
+e^{2j\pi d\sin(\theta)} \\
+e^{2j\pi d \cdot 2\sin(\theta)} \\
+\vdots \\
+e^{2j\pi d (N_r - 1)\sin(\theta)}
+\end{bmatrix}
+$$
 
 The spatial covariance matrix is
 
-```text
-R = (1 / N) X X^H
-```
+$$
+R = \frac{1}{N}X X^H
+$$
 
-where `N` is the number of time samples. In Python:
+where $N$ is the number of time samples. In Python:
 
 ```python
 R = (X @ X.conj().T) / X.shape[1]
@@ -65,11 +67,17 @@ The notebooks use this narrowband far-field model throughout.
 Delay-and-sum phase-aligns a look direction and sums the sensors. In PySDR
 notation, the conventional weights are the steering vector for the look angle:
 
-```text
-w = s(theta)
+$$
+w = s(\theta)
+$$
+
+$$
 y = w^H X
-P_DAS(theta) = var(y)
-```
+$$
+
+$$
+P_{DAS}(\theta) = \operatorname{var}(y)
+$$
 
 Delay-and-sum is simple, robust, and intuitive, but its angular resolution is
 limited by array aperture and sidelobe behavior.
@@ -78,17 +86,23 @@ limited by array aperture and sidelobe behavior.
 
 MVDR minimizes output power while preserving unit response in the scan direction:
 
-```text
-minimize    w^H R w
-subject to  w^H s = 1
-```
+$$
+\min_w \; w^H R w
+$$
+
+$$
+\text{subject to} \quad w^H s = 1
+$$
 
 The weights and spectrum are
 
-```text
-w_mvdr = R^-1 s / (s^H R^-1 s)
-P_MVDR(theta) = 1 / (s^H R^-1 s)
-```
+$$
+w_{mvdr} = \frac{R^{-1}s}{s^H R^{-1}s}
+$$
+
+$$
+P_{MVDR}(\theta) = \frac{1}{s^H R^{-1}s}
+$$
 
 MVDR can suppress interference better than delay-and-sum, but it depends on a
 good covariance estimate and is sensitive to steering mismatch.
@@ -97,36 +111,39 @@ good covariance estimate and is sensitive to steering mismatch.
 
 LCMV extends MVDR to multiple linear constraints:
 
-```text
-minimize    w^H R w
-subject to  C^H w = f
-```
+$$
+\min_w \; w^H R w
+$$
+
+$$
+\text{subject to} \quad C^H w = f
+$$
 
 with solution
 
-```text
-w_lcmv = R^-1 C [C^H R^-1 C]^-1 f
-```
+$$
+w_{lcmv} = R^{-1} C (C^H R^{-1} C)^{-1} f
+$$
 
-`C` contains steering vectors for constrained directions, and `f` is the desired
-response. For example, `f = [1, 0, 0]^T` can preserve a talker direction while
+$C$ contains steering vectors for constrained directions, and $f$ is the desired
+response. For example, $f = [1, 0, 0]^T$ can preserve a talker direction while
 forcing nulls toward two known interferers. PySDR also shows a multi-look case
-such as `f = [1, 1, 0, 0]^T`.
+such as $f = [1, 1, 0, 0]^T$.
 
 ### MUSIC
 
 MUSIC is a subspace DOA estimator. After eigendecomposing the covariance,
 
-```text
-R = V_s Lambda_s V_s^H + V_n Lambda_n V_n^H
-```
+$$
+R = V_s \Lambda_s V_s^H + V_n \Lambda_n V_n^H
+$$
 
 the steering vectors for true sources are ideally orthogonal to the noise
-subspace `V_n`. The MUSIC scan metric is
+subspace $V_n$. The MUSIC scan metric is
 
-```text
-theta_hat = argmax_theta 1 / (s^H V_n V_n^H s)
-```
+$$
+\hat{\theta} = \arg\max_\theta \frac{1}{s^H V_n V_n^H s}
+$$
 
 MUSIC can produce very sharp DOA peaks, but it needs the number of sources and a
 reliable covariance estimate.
