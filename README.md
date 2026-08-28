@@ -8,7 +8,7 @@ estimation. Examples are primarily based on theory and notation presented in
 
 - `Delay_and_Sum.ipynb`: conventional beamforming and a baseline DOA scan.
 - `MVDR.ipynb`: adaptive Capon/MVDR spatial spectrum.
-- `LCMV.ipynb`: constrained adaptive beamforming with look and null directions.
+- `LCMV.ipynb`: constrained adaptive beamforming with multiple response constraints.
 - `MUSIC.ipynb`: high-resolution subspace DOA estimation.
 
 ## Acoustic Array Model
@@ -57,6 +57,13 @@ where $N$ is the number of time samples. In Python:
 
 ```python
 R = (X @ X.conj().T) / X.shape[1]
+```
+
+The MVDR and MUSIC notebooks use the same idea with three source directions by
+directly adding three source terms:
+
+```python
+X = s1 @ x1 + s2 @ x2 + 0.1 * s3 @ x3
 ```
 
 ## Algorithms
@@ -127,9 +134,10 @@ w_{lcmv} = R^{-1} C (C^H R^{-1} C)^{-1} f
 $$
 
 $C$ contains steering vectors for constrained directions, and $f$ is the desired
-response. For example, $f = [1, 0, 0]^T$ can preserve a talker direction while
-forcing nulls toward two known interferers. PySDR also shows a multi-look case
-such as $f = [1, 1, 0, 0]^T$.
+response. For example, $f$ can preserve one or more talker directions and can
+also place nulls toward known interferers. The LCMV notebook simulates four
+received signals, then uses $f = [1, 1]^T$ to place unit-response constraints at
+two SOI directions.
 
 ### MUSIC
 
