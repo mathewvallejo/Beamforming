@@ -92,7 +92,7 @@ The estimated DOA corresponds to the angle producing the maximum output power.
 
 ### MVDR / Capon
 
-MVDR minimizes output power while preserving unit response in the scan direction:
+Minimum variance distortionless response (MVDR) minimizes output power while preserving unit response in the scan direction:
 
 $$
 \min_w \; w^H R w
@@ -117,7 +117,7 @@ good covariance estimate and is sensitive to steering mismatch.
 
 ### LCMV
 
-LCMV extends MVDR to multiple linear constraints:
+Linearly constrained minimum variance (LCMV) extends MVDR to multiple linear constraints:
 
 $$
 \min_w \; w^H R w
@@ -141,7 +141,7 @@ two SOI directions.
 
 ### MUSIC
 
-MUSIC is a subspace DOA estimator. After eigendecomposing the covariance,
+MUltiple SIgnal Classification (MUSIC) is a subspace DOA estimator. After eigendecomposing the covariance,
 
 $$
 R = V_s \Lambda_s V_s^H + V_n \Lambda_n V_n^H
