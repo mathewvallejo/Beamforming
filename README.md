@@ -59,8 +59,8 @@ where $N$ is the number of time samples. In Python:
 R = (X @ X.conj().T) / X.shape[1]
 ```
 
-The MVDR and MUSIC notebooks use the same idea with three source directions by
-directly adding three source terms:
+The MVDR and MUSIC notebooks use the same idea with multiple source directions by
+directly adding them:
 
 ```python
 X = s1 @ x1 + s2 @ x2 + 0.1 * s3 @ x3
