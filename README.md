@@ -13,7 +13,7 @@ estimation. Examples are primarily based on theory and notation presented in
 
 ## Acoustic Array Model
 
-For a uniform linear microphone array with $N_r$ sensors, the single-source
+For a uniform linear microphone array (ULA) with $N_r$ sensors, the single-source
 narrowband far-field received signal model is:
 
 $$
@@ -187,5 +187,5 @@ reliable covariance estimate.
   range
 - More microphones increase aperture and usually improve angular resolution
 - More snapshots improve covariance estimates for MVDR, LCMV, and MUSIC
-- A straight-line array has front/back ambiguity unless the geometry or signal
+- A ULA (straight line) has front/back ambiguity unless the geometry or signal
   model adds more information
