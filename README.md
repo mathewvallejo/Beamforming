@@ -165,13 +165,13 @@ unit-response constraints at two SOI directions.
 
 ### MUSIC
 
-MUSIC is a subspace DOA estimator. After eigendecomposing the covariance,
+MUSIC is a subspace DOA estimator. After eigendecomposing the covariance into a signal subspace and a noise subspace,
 
 $$
 R = V_s \Lambda_s V_s^H + V_n \Lambda_n V_n^H
 $$
 
-the steering vectors for true sources are ideally orthogonal to the noise
+We steer for nulls in the noise subspace. The steering vectors for true sources are ideally orthogonal to the noise
 subspace $V_n$. The MUSIC scan metric is
 
 $$
